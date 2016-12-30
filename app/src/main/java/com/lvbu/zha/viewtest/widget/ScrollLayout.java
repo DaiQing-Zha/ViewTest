@@ -134,7 +134,6 @@ public class ScrollLayout extends ViewGroup {
                 mScroller.startScroll(getScrollX(),0,dx,0);
                 invalidate();
                 break;
-
         }
         return super.onTouchEvent(event);
     }

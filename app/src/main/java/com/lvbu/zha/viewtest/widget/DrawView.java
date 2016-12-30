@@ -25,16 +25,35 @@ public class DrawView extends View {
         super(context, attrs, defStyleAttr);
     }
     private static final int[] SHADOWS_COLORS = new int[] { 0x88ff0000, 0x00ffffff, 0x8800ff00 };
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int wMeasureMode = MeasureSpec.getMode(widthMeasureSpec);
+        int wMeasureSize = MeasureSpec.getSize(widthMeasureSpec);
+        int hMeasureMode = MeasureSpec.getMode(heightMeasureSpec);
+        int hMeasureSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        if (wMeasureMode == MeasureSpec.AT_MOST && hMeasureSize == MeasureSpec.AT_MOST){
+
+            setMeasuredDimension(wMeasureSize,hMeasureSize);
+        }
+        if (wMeasureMode == MeasureSpec.AT_MOST){
+
+            setMeasuredDimension(300,hMeasureSize);
+        }
+        if (hMeasureMode == MeasureSpec.AT_MOST){
+
+            setMeasuredDimension(wMeasureSize,300);
+        }
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-//        Paint paint = new Paint();
-//        paint.setColor(Color.parseColor("#00FF00"));
-//        RectF rectF = new RectF(0,0,500,500);
-//        canvas.drawArc(rectF,0,90,false,paint);
-        canvas.translate(200,200);
+//        canvas.translate(200,200);
         gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP,SHADOWS_COLORS);
-        gradientDrawable.setBounds(0,0,250,250);
+        gradientDrawable.setBounds(0,0,getMeasuredWidth(),getMeasuredHeight());
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.draw(canvas);
     }

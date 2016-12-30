@@ -24,6 +24,22 @@
         app:rainbowbar_hspace="80dp"
         app:rainbowbar_vspace="5dp"
         android:layout_marginTop="50dip"/>
-    <com.lvbu.zha.viewtest.widget.DrawView
-        android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip" android:background="#FF0000"></View>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="1dip" android:layout_height="match_parent"
+            android:background="#FF0000"></View>
+        <com.lvbu.zha.viewtest.widget.DrawView android:id="@+id/draw"
+            android:layout_width="80dip" android:layout_height="80dip" />
+        <View
+            android:layout_width="1dip" android:layout_height="match_parent"
+            android:background="#FF0000"></View>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip" android:background="#FF0000"></View>
 </LinearLayout>
