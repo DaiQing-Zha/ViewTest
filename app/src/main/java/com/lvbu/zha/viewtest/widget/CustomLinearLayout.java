@@ -20,24 +20,27 @@ public class CustomLinearLayout extends LinearLayout {
         super(context, attrs);
     }
 
-    private boolean mScrolling;
-    private float touchDownX;
-    private float touchDownY;
-    private float currentMoveDistanceX;   //本次X轴移动的距离
-    private float currentMoveDistanceY;   //本次Y轴移动的距离
-    private float lastMoveDistanceX;   //上一次X轴移动的距离
-    private float lastMoveDistanceY;   //上一次Y轴移动的距离
-    private float finalMoveDistanceX;   //最终X轴移动的距离
-    private float finalMoveDistanceY;   //最终Y轴移动的距离
+    private boolean mScrolling;  //用于标示 当前是否是滑动，true：表示滑动；false：表示点击
+    private float touchDownX;   //手指按下时X轴的位置
+    private float touchDownY; //手指按下时Y轴的位置
+    private float currentMoveDistanceX;    //当前X轴移动的距离[当前位置距离手指按下地方的X轴方向距离]
+    private float currentMoveDistanceY;   //当前Y轴移动的距离[当前位置距离手指按下地方的Y轴方向距离]
+    private float lastMoveDistanceX;     //上一次X轴移动的距离[上一次位置距离手指按下地方的X轴方向距离]
+    private float lastMoveDistanceY;   //上一次Y轴移动的距离[上一次位置距离手指按下地方的Y轴方向距离]
+    private float finalMoveDistanceX;    //最终X轴移动的距离[最终位置距离手指按下地方的X轴方向距离]
+    private float finalMoveDistanceY;  //最终Y轴移动的距离[最终位置距离手指按下地方的Y轴方向距离]
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         switch (ev.getAction()){
+
+
             case MotionEvent.ACTION_DOWN:
                 touchDownX = ev.getX();
                 touchDownY = ev.getY();
                 mScrolling = false;
                 break;
             case MotionEvent.ACTION_MOVE:
+
                 if (Math.abs(touchDownX - ev.getX()) >= ViewConfiguration.get(getContext()).getScaledTouchSlop()
                         || Math.abs(touchDownY - ev.getY()) >= ViewConfiguration.get(getContext()).getScaledTouchSlop()){
                     mScrolling = true;
@@ -49,6 +52,7 @@ public class CustomLinearLayout extends LinearLayout {
                 mScrolling = false;
                 break;
         }
+        Log.e("mainCVBHJM","touchDownX = " + touchDownX + " ev.getX() = " + ev.getX() + " Slop = " + ViewConfiguration.get(getContext()).getScaledTouchSlop());
         return mScrolling;
     }
 
