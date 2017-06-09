@@ -31,6 +31,7 @@ public class CustomLinearLayout extends LinearLayout {
     private float finalMoveDistanceY;  //最终Y轴移动的距离[最终位置距离手指按下地方的Y轴方向距离]
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
         switch (ev.getAction()){
 
 
@@ -52,7 +53,6 @@ public class CustomLinearLayout extends LinearLayout {
                 mScrolling = false;
                 break;
         }
-        Log.e("mainCVBHJM","touchDownX = " + touchDownX + " ev.getX() = " + ev.getX() + " Slop = " + ViewConfiguration.get(getContext()).getScaledTouchSlop());
         return mScrolling;
     }
 
@@ -77,9 +77,9 @@ public class CustomLinearLayout extends LinearLayout {
                     if(mSetOnSlideListener!=null){
 
                         if (currentMoveDistanceX - lastMoveDistanceX > 0){
-                            mSetOnSlideListener.onRightToLeftSlide(touchDownX,touchDownY, currentMoveDistanceX,currentMoveDistanceX - lastMoveDistanceX);
+                            mSetOnSlideListener.onRightToLeftSlide(currentMoveDistanceX - lastMoveDistanceX);
                         }else{
-                            mSetOnSlideListener.onLeftToRightSlide(touchDownX,touchDownY,currentMoveDistanceX,currentMoveDistanceX - lastMoveDistanceX);
+                            mSetOnSlideListener.onLeftToRightSlide(currentMoveDistanceX - lastMoveDistanceX);
                         }
                         Log.e("mainCVBHJ","onRightToLeftSlide" + (currentMoveDistanceX - lastMoveDistanceX));
                     }
@@ -87,9 +87,9 @@ public class CustomLinearLayout extends LinearLayout {
                     if (currentMoveDistanceY < - dp2px(getContext(),40)){
                         if (mSetOnSlideListener != null){
                             if (currentMoveDistanceY - lastMoveDistanceY < 0){
-                                mSetOnSlideListener.onTopToBottomSlide(touchDownX,touchDownY,currentMoveDistanceY,currentMoveDistanceY - lastMoveDistanceY);
+                                mSetOnSlideListener.onTopToBottomSlide(currentMoveDistanceY - lastMoveDistanceY);
                             }else{
-                                mSetOnSlideListener.onBottomToTopSlide(touchDownX,touchDownY,currentMoveDistanceY,currentMoveDistanceY - lastMoveDistanceY);
+                                mSetOnSlideListener.onBottomToTopSlide(currentMoveDistanceY - lastMoveDistanceY);
                             }
                             Log.e("mainCVBHJ","onTopToBottomSlide" + (currentMoveDistanceY - lastMoveDistanceY));
                         }
@@ -98,18 +98,18 @@ public class CustomLinearLayout extends LinearLayout {
                 if (currentMoveDistanceX < - dp2px(getContext(), 40)) {
                     if(mSetOnSlideListener!=null){
                         if (currentMoveDistanceX - lastMoveDistanceX < 0){
-                            mSetOnSlideListener.onLeftToRightSlide(touchDownX,touchDownY,currentMoveDistanceX,currentMoveDistanceX - lastMoveDistanceX);
+                            mSetOnSlideListener.onLeftToRightSlide(currentMoveDistanceX - lastMoveDistanceX);
                         }else{
-                            mSetOnSlideListener.onRightToLeftSlide(touchDownX,touchDownY, currentMoveDistanceX,currentMoveDistanceX - lastMoveDistanceX);
+                            mSetOnSlideListener.onRightToLeftSlide(currentMoveDistanceX - lastMoveDistanceX);
                         }
                         Log.e("mainCVBHJ","onLeftToRightSlide" + (currentMoveDistanceX - lastMoveDistanceX));
                     }
                 }else if (currentMoveDistanceY > dp2px(getContext(),40)){
                     if (mSetOnSlideListener != null){
                         if (currentMoveDistanceY - lastMoveDistanceY > 0){
-                            mSetOnSlideListener.onBottomToTopSlide(touchDownX,touchDownY,currentMoveDistanceY,currentMoveDistanceY - lastMoveDistanceY);
+                            mSetOnSlideListener.onBottomToTopSlide(currentMoveDistanceY - lastMoveDistanceY);
                         }else{
-                            mSetOnSlideListener.onTopToBottomSlide(touchDownX,touchDownY,currentMoveDistanceY,currentMoveDistanceY - lastMoveDistanceY);
+                            mSetOnSlideListener.onTopToBottomSlide(currentMoveDistanceY - lastMoveDistanceY);
                         }
                         Log.e("mainCVBHJ","onBottomToTopSlide");
                     }
@@ -121,7 +121,7 @@ public class CustomLinearLayout extends LinearLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 if (mSetOnSlideListener != null){
-                    mSetOnSlideListener.onActionUp(finalMoveDistanceX,finalMoveDistanceY);
+                    if (Math.abs(touchDownX - event.getX()) > 10)mSetOnSlideListener.onActionUp(finalMoveDistanceX,finalMoveDistanceY);
                 }
                 break;
         }
@@ -142,10 +142,10 @@ public class CustomLinearLayout extends LinearLayout {
      * 滑动监听
      */
     public interface setOnSlideListener{
-        void onLeftToRightSlide(float touchDownX, float touchDownY, float distance, float moveDistance);
-        void onRightToLeftSlide(float touchDownX, float touchDownY, float distance, float moveDistance);
-        void onTopToBottomSlide(float touchDownX, float touchDownY, float distance, float moveDistance);
-        void onBottomToTopSlide(float touchDownX, float touchDownY, float distance, float moveDistance);
+        void onLeftToRightSlide(float moveDistance);
+        void onRightToLeftSlide(float moveDistance);
+        void onTopToBottomSlide(float moveDistance);
+        void onBottomToTopSlide(float moveDistance);
         void onActionDown(float locationX, float locationY);
         void onActionUp(float finalDistanceX, float finalDistanceY);
     }

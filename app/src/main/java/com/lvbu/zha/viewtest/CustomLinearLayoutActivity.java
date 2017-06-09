@@ -27,22 +27,22 @@ public class CustomLinearLayoutActivity extends AppCompatActivity {
 
         ll_view.setmSetOnSlideListener(new CustomLinearLayout.setOnSlideListener() {
             @Override
-            public void onLeftToRightSlide(float touchDownX, float touchDownY, float distance, float moveDistance) {
+            public void onLeftToRightSlide(float moveDistance) {
 
             }
 
             @Override
-            public void onRightToLeftSlide(float touchDownX, float touchDownY, float distance, float moveDistance) {
+            public void onRightToLeftSlide(float moveDistance) {
 
             }
 
             @Override
-            public void onTopToBottomSlide(float touchDownX, float touchDownY, float distance, float moveDistance) {
+            public void onTopToBottomSlide(float moveDistance) {
 
             }
 
             @Override
-            public void onBottomToTopSlide(float touchDownX, float touchDownY, float distance, float moveDistance) {
+            public void onBottomToTopSlide(float moveDistance) {
 
             }
 
