@@ -1,22 +1,17 @@
 package com.lvbu.zha.viewtest;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.lvbu.zha.viewtest.widget.DrawView;
 
 public class MainActivity extends AppCompatActivity {
-
 
     private LinearLayout layout;
     private Button btn_scrollTo,btn_scrollBy;

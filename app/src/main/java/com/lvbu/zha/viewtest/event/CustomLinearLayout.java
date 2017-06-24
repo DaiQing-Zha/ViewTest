@@ -35,7 +35,7 @@ public class CustomLinearLayout extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 float currentX = ev.getRawX();
                 float currentY = ev.getRawY();
-                if (Math.abs(Math.abs(lastX) - Math.abs(currentX)) > 20 || Math.abs(Math.abs(lastY) - Math.abs(currentY)) > 20){
+                if (Math.abs(Math.abs(lastX) - Math.abs(currentX)) > 40 || Math.abs(Math.abs(lastY) - Math.abs(currentY)) > 400){
                     intercepted = false;
                 }else{
 

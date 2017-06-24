@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TextView
+        android:layout_width="match_parent" android:layout_height="150dip"
+        android:background="#14191f"/>
+    <FrameLayout
+        android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:orientation="vertical">
+            <FrameLayout
+                android:layout_width="match_parent" android:layout_height="25dip"
+                android:background="#14191f">
+            </FrameLayout>
+            <FrameLayout
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:background="#05090d">
+            </FrameLayout>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="50dip" android:layout_height="50dip"
+            android:layout_gravity="center_horizontal" android:src="@mipmap/ic_launcher"
+            android:background="@drawable/shape_temperature_progress_bg"/>
+    </FrameLayout>
+</LinearLayout>

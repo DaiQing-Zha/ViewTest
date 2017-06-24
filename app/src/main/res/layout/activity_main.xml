@@ -42,4 +42,15 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dip" android:background="#FF0000"></View>
+    <com.lvbu.zha.viewtest.RoundButton
+        android:layout_width="50dip"
+        android:layout_height="50dip" />
+    <FrameLayout
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:background="#010e1d">
+        <View
+            android:layout_width="200dip" android:layout_height="200dip"
+            android:background="@drawable/shape_shape"/>
+    </FrameLayout>
 </LinearLayout>
